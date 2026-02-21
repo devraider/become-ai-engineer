@@ -33,6 +33,7 @@ from exercise_advanced_3_pipelines import (
 def sample_data():
     """Generate sample classification data."""
     from sklearn.datasets import make_classification
+
     X, y = make_classification(n_samples=200, n_features=10, random_state=42)
     return X, y
 
@@ -42,9 +43,10 @@ def sample_models():
     """Create sample models for testing."""
     from sklearn.linear_model import LogisticRegression
     from sklearn.ensemble import RandomForestClassifier
+
     return {
-        'lr': LogisticRegression(max_iter=200),
-        'rf': RandomForestClassifier(n_estimators=10, random_state=42)
+        "lr": LogisticRegression(max_iter=200),
+        "rf": RandomForestClassifier(n_estimators=10, random_state=42),
     }
 
 
@@ -52,22 +54,23 @@ def sample_models():
 # TESTS FOR create_preprocessing_pipeline
 # =============================================================================
 
+
 class TestCreatePreprocessingPipeline:
     """Tests for Task 1."""
 
     def test_returns_transformer(self):
         """Test that function returns a transformer."""
         result = create_preprocessing_pipeline(
-            numeric_features=['age', 'income'],
-            categorical_features=['gender']
+            numeric_features=["age", "income"], categorical_features=["gender"]
         )
         assert result is not None, "Function returned None"
-        assert hasattr(result, 'fit_transform')
+        assert hasattr(result, "fit_transform")
 
 
 # =============================================================================
 # TESTS FOR create_full_pipeline
 # =============================================================================
+
 
 class TestCreateFullPipeline:
     """Tests for Task 2."""
@@ -76,16 +79,17 @@ class TestCreateFullPipeline:
         """Test that function returns a Pipeline."""
         from sklearn.preprocessing import StandardScaler
         from sklearn.linear_model import LogisticRegression
-        
+
         result = create_full_pipeline(StandardScaler(), LogisticRegression())
         assert result is not None, "Function returned None"
-        assert hasattr(result, 'fit')
-        assert hasattr(result, 'predict')
+        assert hasattr(result, "fit")
+        assert hasattr(result, "predict")
 
 
 # =============================================================================
 # TESTS FOR add_polynomial_features
 # =============================================================================
+
 
 class TestAddPolynomialFeatures:
     """Tests for Task 3."""
@@ -110,6 +114,7 @@ class TestAddPolynomialFeatures:
 # TESTS FOR create_feature_selector
 # =============================================================================
 
+
 class TestCreateFeatureSelector:
     """Tests for Task 4."""
 
@@ -117,12 +122,13 @@ class TestCreateFeatureSelector:
         """Test function returns a selector."""
         result = create_feature_selector(k=5)
         assert result is not None, "Function returned None"
-        assert hasattr(result, 'fit_transform')
+        assert hasattr(result, "fit_transform")
 
 
 # =============================================================================
 # TESTS FOR create_voting_classifier
 # =============================================================================
+
 
 class TestCreateVotingClassifier:
     """Tests for Task 5."""
@@ -131,8 +137,8 @@ class TestCreateVotingClassifier:
         """Test function returns VotingClassifier."""
         result = create_voting_classifier(sample_models)
         assert result is not None, "Function returned None"
-        assert hasattr(result, 'fit')
-        assert hasattr(result, 'predict')
+        assert hasattr(result, "fit")
+        assert hasattr(result, "predict")
 
     def test_can_fit(self, sample_models, sample_data):
         """Test that classifier can be fitted."""
@@ -148,12 +154,14 @@ class TestCreateVotingClassifier:
 # TESTS FOR create_stacking_classifier
 # =============================================================================
 
+
 class TestCreateStackingClassifier:
     """Tests for Task 6."""
 
     def test_returns_classifier(self, sample_models):
         """Test function returns StackingClassifier."""
         from sklearn.linear_model import LogisticRegression
+
         final = LogisticRegression(max_iter=200)
         result = create_stacking_classifier(sample_models, final)
         assert result is not None, "Function returned None"
@@ -163,17 +171,18 @@ class TestCreateStackingClassifier:
 # TESTS FOR nested_cross_validation
 # =============================================================================
 
+
 class TestNestedCrossValidation:
     """Tests for Task 7."""
 
     def test_returns_dict(self, sample_data):
         """Test function returns dictionary."""
         from sklearn.linear_model import LogisticRegression
+
         X, y = sample_data
-        param_grid = {'C': [0.1, 1]}
+        param_grid = {"C": [0.1, 1]}
         result = nested_cross_validation(
-            X, y, LogisticRegression(max_iter=200),
-            param_grid, outer_cv=3, inner_cv=2
+            X, y, LogisticRegression(max_iter=200), param_grid, outer_cv=3, inner_cv=2
         )
         assert result is not None, "Function returned None"
         assert isinstance(result, dict)
@@ -181,21 +190,22 @@ class TestNestedCrossValidation:
     def test_has_required_keys(self, sample_data):
         """Test required keys are present."""
         from sklearn.linear_model import LogisticRegression
+
         X, y = sample_data
-        param_grid = {'C': [0.1, 1]}
+        param_grid = {"C": [0.1, 1]}
         result = nested_cross_validation(
-            X, y, LogisticRegression(max_iter=200),
-            param_grid, outer_cv=3, inner_cv=2
+            X, y, LogisticRegression(max_iter=200), param_grid, outer_cv=3, inner_cv=2
         )
         if result:
-            assert 'outer_scores' in result
-            assert 'mean_score' in result
-            assert 'std_score' in result
+            assert "outer_scores" in result
+            assert "mean_score" in result
+            assert "std_score" in result
 
 
 # =============================================================================
 # TESTS FOR create_calibrated_classifier
 # =============================================================================
+
 
 class TestCreateCalibratedClassifier:
     """Tests for Task 8."""
@@ -203,6 +213,7 @@ class TestCreateCalibratedClassifier:
     def test_returns_classifier(self):
         """Test function returns calibrated classifier."""
         from sklearn.linear_model import LogisticRegression
+
         result = create_calibrated_classifier(LogisticRegression(max_iter=200))
         assert result is not None, "Function returned None"
 
@@ -211,35 +222,35 @@ class TestCreateCalibratedClassifier:
 # TESTS FOR learning_curve_analysis
 # =============================================================================
 
+
 class TestLearningCurveAnalysis:
     """Tests for Task 9."""
 
     def test_returns_dict(self, sample_data):
         """Test function returns dictionary."""
         from sklearn.linear_model import LogisticRegression
+
         X, y = sample_data
-        result = learning_curve_analysis(
-            LogisticRegression(max_iter=200), X, y, cv=3
-        )
+        result = learning_curve_analysis(LogisticRegression(max_iter=200), X, y, cv=3)
         assert result is not None, "Function returned None"
         assert isinstance(result, dict)
 
     def test_has_required_keys(self, sample_data):
         """Test required keys are present."""
         from sklearn.linear_model import LogisticRegression
+
         X, y = sample_data
-        result = learning_curve_analysis(
-            LogisticRegression(max_iter=200), X, y, cv=3
-        )
+        result = learning_curve_analysis(LogisticRegression(max_iter=200), X, y, cv=3)
         if result:
-            assert 'train_sizes' in result
-            assert 'train_scores' in result
-            assert 'test_scores' in result
+            assert "train_sizes" in result
+            assert "train_scores" in result
+            assert "test_scores" in result
 
 
 # =============================================================================
 # TESTS FOR create_threshold_classifier
 # =============================================================================
+
 
 class TestCreateThresholdClassifier:
     """Tests for Task 10."""
@@ -247,6 +258,7 @@ class TestCreateThresholdClassifier:
     def test_returns_callable(self, sample_data):
         """Test function returns callable."""
         from sklearn.linear_model import LogisticRegression
+
         X, y = sample_data
         model = LogisticRegression(max_iter=200)
         model.fit(X, y)
@@ -257,6 +269,7 @@ class TestCreateThresholdClassifier:
     def test_predictions_work(self, sample_data):
         """Test that threshold predictions work."""
         from sklearn.linear_model import LogisticRegression
+
         X, y = sample_data
         model = LogisticRegression(max_iter=200)
         model.fit(X, y)

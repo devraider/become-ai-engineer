@@ -46,6 +46,7 @@ def sample_query():
 # TESTS FOR compute_embedding_statistics
 # =============================================================================
 
+
 class TestComputeEmbeddingStatistics:
     """Tests for Task 1."""
 
@@ -59,7 +60,7 @@ class TestComputeEmbeddingStatistics:
         """Test that all required keys are present."""
         result = compute_embedding_statistics(sample_embeddings)
         if result:
-            required_keys = ['mean', 'std', 'norms', 'min_norm_idx', 'max_norm_idx']
+            required_keys = ["mean", "std", "norms", "min_norm_idx", "max_norm_idx"]
             for key in required_keys:
                 assert key in result, f"Missing key: {key}"
 
@@ -67,12 +68,15 @@ class TestComputeEmbeddingStatistics:
         """Test mean embedding shape."""
         result = compute_embedding_statistics(sample_embeddings)
         if result:
-            assert result['mean'].shape == (8,), "Mean should have shape (embedding_dim,)"
+            assert result["mean"].shape == (
+                8,
+            ), "Mean should have shape (embedding_dim,)"
 
 
 # =============================================================================
 # TESTS FOR batch_cosine_similarity
 # =============================================================================
+
 
 class TestBatchCosineSimilarity:
     """Tests for Task 2."""
@@ -99,6 +103,7 @@ class TestBatchCosineSimilarity:
 # =============================================================================
 # TESTS FOR top_k_similar
 # =============================================================================
+
 
 class TestTopKSimilar:
     """Tests for Task 3."""
@@ -129,6 +134,7 @@ class TestTopKSimilar:
 # TESTS FOR create_document_embeddings_df
 # =============================================================================
 
+
 class TestCreateDocumentEmbeddingsDf:
     """Tests for Task 4."""
 
@@ -144,35 +150,40 @@ class TestCreateDocumentEmbeddingsDf:
         texts = [f"doc_{i}" for i in range(10)]
         result = create_document_embeddings_df(texts, sample_embeddings)
         if result is not None:
-            assert 'text' in result.columns
-            assert 'embedding' in result.columns
-            assert 'norm' in result.columns
+            assert "text" in result.columns
+            assert "embedding" in result.columns
+            assert "norm" in result.columns
 
 
 # =============================================================================
 # TESTS FOR aggregate_embeddings_by_group
 # =============================================================================
 
+
 class TestAggregateEmbeddingsByGroup:
     """Tests for Task 6."""
 
     def test_returns_dataframe(self):
         """Test function returns DataFrame."""
-        df = pd.DataFrame({
-            'category': ['A', 'A', 'B', 'B'],
-            'embedding': [[1, 2], [3, 4], [5, 6], [7, 8]]
-        })
-        result = aggregate_embeddings_by_group(df, 'category')
+        df = pd.DataFrame(
+            {
+                "category": ["A", "A", "B", "B"],
+                "embedding": [[1, 2], [3, 4], [5, 6], [7, 8]],
+            }
+        )
+        result = aggregate_embeddings_by_group(df, "category")
         assert result is not None, "Function returned None"
         assert isinstance(result, pd.DataFrame)
 
     def test_correct_groups(self):
         """Test correct number of groups."""
-        df = pd.DataFrame({
-            'category': ['A', 'A', 'B', 'B', 'C'],
-            'embedding': [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]
-        })
-        result = aggregate_embeddings_by_group(df, 'category')
+        df = pd.DataFrame(
+            {
+                "category": ["A", "A", "B", "B", "C"],
+                "embedding": [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]],
+            }
+        )
+        result = aggregate_embeddings_by_group(df, "category")
         if result is not None:
             assert len(result) == 3
 
@@ -180,6 +191,7 @@ class TestAggregateEmbeddingsByGroup:
 # =============================================================================
 # TESTS FOR compute_pairwise_distances
 # =============================================================================
+
 
 class TestComputePairwiseDistances:
     """Tests for Task 7."""
@@ -207,6 +219,7 @@ class TestComputePairwiseDistances:
 # TESTS FOR normalize_embeddings
 # =============================================================================
 
+
 class TestNormalizeEmbeddings:
     """Tests for Task 8."""
 
@@ -228,12 +241,13 @@ class TestNormalizeEmbeddings:
 # TESTS FOR sliding_window_embeddings
 # =============================================================================
 
+
 class TestSlidingWindowEmbeddings:
     """Tests for Task 9."""
 
     def test_returns_list(self):
         """Test function returns list."""
-        tokens = ['a', 'b', 'c', 'd', 'e']
+        tokens = ["a", "b", "c", "d", "e"]
         embeddings = np.random.randn(5, 3)
         result = sliding_window_embeddings(tokens, embeddings, window_size=2)
         assert result is not None, "Function returned None"
@@ -241,7 +255,7 @@ class TestSlidingWindowEmbeddings:
 
     def test_correct_window_count(self):
         """Test correct number of windows."""
-        tokens = ['a', 'b', 'c', 'd', 'e']
+        tokens = ["a", "b", "c", "d", "e"]
         embeddings = np.random.randn(5, 3)
         result = sliding_window_embeddings(tokens, embeddings, window_size=2)
         if result:
