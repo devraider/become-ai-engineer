@@ -20,22 +20,6 @@ Windows
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-### Start your journey
-
-```
-uv init ai-training
-cd ai-training
-uv venv
-
-# Mac/Linux
-source .venv/bin/activate
-# Windows
-.venv\Scripts\activate
-
-
-uv add fastapi uvicorn numpy pandas matplotlib scikit-learn jupyter httpx
-```
-
 ### VS Code
 
 > https://code.visualstudio.com/
