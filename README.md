@@ -50,4 +50,4 @@ This training program covers everything you need to pass AI engineering intervie
 
 ## 🏁 Start Your Journey
 
-**[→ View Full Roadmap](ROADMAP.md)** | **[→ Begin Week 1](week-1/instructions.md)**
+**[→ View Full Roadmap](ROADMAP.md)** | **[→ Begin Week 1](week-1/README.md)**
