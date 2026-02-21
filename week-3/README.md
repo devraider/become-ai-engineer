@@ -428,3 +428,5 @@ After completing this week, you should be able to:
 - [ ] Tune hyperparameters with GridSearchCV
 - [ ] Save and load trained models with joblib
 - [ ] Explain the bias-variance tradeoff in interviews
+
+**[→ View Full Roadmap](ROADMAP.md)** | **[→ Begin Week 4](../week-4/README.md)**

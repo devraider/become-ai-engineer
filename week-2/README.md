@@ -479,3 +479,5 @@ After this week, you should be able to:
 - Model evaluation and cross-validation
 - Building ML pipelines
 - Build: A chatbot with memory
+
+**[→ View Full Roadmap](ROADMAP.md)** | **[→ Begin Week 3](../week-3/README.md)**
