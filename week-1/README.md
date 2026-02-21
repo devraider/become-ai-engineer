@@ -74,4 +74,4 @@ def analyze(text: str):
     return sentiment(text)
 ```
 
-**[→ View Full Roadmap](ROADMAP.md)** | **[→ Begin Week 2](week-2/README.md)**
+**[→ View Full Roadmap](ROADMAP.md)** | **[→ Begin Week 2](../week-2/README.md)**
