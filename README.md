@@ -14,7 +14,7 @@ This training program covers everything you need to pass AI engineering intervie
 
 | Phase           | Weeks | Focus                          |
 | --------------- | ----- | ------------------------------ |
-| Foundation      | 1-3   | Setup, Data, OpenAI API        |
+| Foundation      | 1-3   | Setup, Data, ML Fundamentals   |
 | LLM Engineering | 4-6   | LangChain, RAG, HuggingFace    |
 | Deep Learning   | 7-9   | PyTorch, Transformers, Vectors |
 | Agentic AI      | 10-12 | LangGraph, ADK, Production     |
@@ -43,7 +43,7 @@ This training program covers everything you need to pass AI engineering intervie
 ├── ROADMAP.md              # Full curriculum overview
 ├── week-1/                 # Environment Setup
 ├── week-2/                 # Data Foundations (NumPy, Pandas)
-├── week-3/                 # LLMs & OpenAI API
+├── week-3/                 # ML Fundamentals (scikit-learn)
 ├── ...
 └── side-learning/          # Python basics (if needed)
 ```
