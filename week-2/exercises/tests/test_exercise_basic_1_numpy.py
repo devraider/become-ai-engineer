@@ -16,7 +16,7 @@ from pathlib import Path
 # Add parent directory to path to import exercises
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from exercise_1_numpy import (
+from exercise_basic_1_numpy import (
     create_embedding_matrix,
     get_word_embedding,
     calculate_similarity,

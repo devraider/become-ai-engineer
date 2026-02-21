@@ -19,7 +19,7 @@ from pathlib import Path
 # Add parent directory to path to import exercises
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from exercise_2_pandas import (
+from exercise_intermediate_2_pandas import (
     load_emotion_dataset,
     check_class_distribution,
     add_text_length,

@@ -123,13 +123,15 @@ print(f"Probabilities: {probs}")  # [0.659, 0.242, 0.099]
 print(f"Sum: {probs.sum()}")      # 1.0
 ```
 
-### ✅ Exercise 1: Embedding Operations
+### ✅ Exercise 1 (Basic): Embedding Operations
 
-> 📁 **Complete the exercise**: [exercises/exercise_1_numpy.py](exercises/exercise_1_numpy.py)
+> 📁 **Complete the exercise**: [exercises/exercise_basic_1_numpy.py](exercises/exercise_basic_1_numpy.py)
 >
-> Run with: `python exercises/exercise_1_numpy.py`
+> Run with: `python exercises/exercise_basic_1_numpy.py`
 >
-> Run tests: `python -m pytest exercises/tests/test_exercise_1.py -v`
+> Run tests: `python -m pytest exercises/tests/test_exercise_basic_1_numpy.py -v`
+>
+> 📖 Need a Python refresher? See [side-learning/python-basics.md](../side-learning/python-basics.md)
 
 ```python
 # TODO: Complete these exercises
@@ -147,7 +149,7 @@ print(f"Sum: {probs.sum()}")      # 1.0
 # top_5_indices = ???
 ```
 
-> 💡 **Solution**: See [exercises/solutions/solution_1_numpy.py](exercises/solutions/solution_1_numpy.py)
+> 💡 **Solution**: See [exercises/solutions/solution_basic_1_numpy.py](exercises/solutions/solution_basic_1_numpy.py)
 
 ---
 
@@ -272,13 +274,13 @@ df.to_csv("prepared_sentiment_data.csv", index=False)
 print(f"\nSaved {len(df)} samples")
 ```
 
-### ✅ Exercise 2: Prepare a Dataset for Classification
+### ✅ Exercise 2 (Intermediate): Prepare a Dataset for Classification
 
-> 📁 **Complete the exercise**: [exercises/exercise_2_pandas.py](exercises/exercise_2_pandas.py)
+> 📁 **Complete the exercise**: [exercises/exercise_intermediate_2_pandas.py](exercises/exercise_intermediate_2_pandas.py)
 >
-> Run with: `python exercises/exercise_2_pandas.py`
+> Run with: `python exercises/exercise_intermediate_2_pandas.py`
 >
-> Run tests: `python -m pytest exercises/tests/test_exercise_2.py -v`
+> Run tests: `python -m pytest exercises/tests/test_exercise_intermediate_2_pandas.py -v`
 
 ```python
 # TODO: Complete these tasks
@@ -300,7 +302,7 @@ print(f"\nSaved {len(df)} samples")
 # ???
 ```
 
-> 💡 **Solution**: See [exercises/solutions/solution_2_pandas.py](exercises/solutions/solution_2_pandas.py)
+> 💡 **Solution**: See [exercises/solutions/solution_intermediate_2_pandas.py](exercises/solutions/solution_intermediate_2_pandas.py)
 
 ---
 
@@ -387,6 +389,18 @@ Create a complete data preparation pipeline that you'll use in later weeks.
 > Run with: `python exercises/project_pipeline.py`
 >
 > Run tests: `python -m pytest exercises/tests/test_project.py -v`
+>
+> 💡 **Solution**: See [exercises/solutions/solution_project.py](exercises/solutions/solution_project.py)
+
+### ✅ Exercise 3 (Advanced): Data Analysis for AI
+
+> 📁 **Complete the exercise**: [exercises/exercise_advanced_3_data_analysis.py](exercises/exercise_advanced_3_data_analysis.py)
+>
+> Run tests: `python -m pytest exercises/tests/test_exercise_advanced_3_data_analysis.py -v`
+>
+> Topics: Embedding statistics, batch similarity, clustering, pairwise distances
+>
+> 💡 **Solution**: See [exercises/solutions/solution_advanced_3_data_analysis.py](exercises/solutions/solution_advanced_3_data_analysis.py)
 
 ### Expected Output
 
@@ -458,9 +472,10 @@ After this week, you should be able to:
 
 ## 🔜 Next Week Preview
 
-**Week 3: Introduction to LLMs & OpenAI API**
+**Week 3: Machine Learning Fundamentals**
 
-- Understanding transformers and attention (conceptual)
-- OpenAI API: chat completions, embeddings
-- Prompt engineering basics
+- scikit-learn basics
+- Classification algorithms
+- Model evaluation and cross-validation
+- Building ML pipelines
 - Build: A chatbot with memory
