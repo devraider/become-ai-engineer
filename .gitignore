@@ -1,0 +1,17 @@
+.env
+uv.lock
+.python-version
+__pycache__/
+.ipynb_checkpoints/
+venv/
+env/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+.DS_Store
+.idea/
+.vscode/
+pyproject.toml
