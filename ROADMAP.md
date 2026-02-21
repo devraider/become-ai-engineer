@@ -15,10 +15,10 @@ By the end of this bootcamp, you'll be able to demonstrate:
 | Python + FastAPI + Async           | Week 1, Side-Learning |
 | NumPy, Pandas, Data Manipulation   | Week 2                |
 | Machine Learning with scikit-learn | Week 3                |
-| LangChain & RAG Pipelines          | Week 4-5              |
-| HuggingFace & Transformers         | Week 6                |
-| Deep Learning Basics (PyTorch)     | Week 7-8              |
-| Embeddings & Vector Databases      | Week 9                |
+| Deep Learning with PyTorch         | Week 4                |
+| LLM APIs & Prompt Engineering      | Week 5, Week 7        |
+| RAG & Vector Databases             | Week 8                |
+| LangChain & Agent Frameworks       | Week 9                |
 | Agentic AI (LangGraph, Google ADK) | Week 10-11            |
 | Production Deployment              | Week 12               |
 
@@ -34,21 +34,21 @@ By the end of this bootcamp, you'll be able to demonstrate:
 | **2** | [Data Foundations](week-2/README.md)        | Data Pipeline        | NumPy, Pandas, Data visualization              |
 | **3** | [ML Fundamentals](week-3/README.md)         | Sentiment Classifier | scikit-learn, Classification, Model evaluation |
 
-### LLM Engineering Phase (Weeks 4-6)
+### Deep Learning & LLM Phase (Weeks 4-6)
 
-| Week  | Topic                  | Project              | Key Skills                            |
-| ----- | ---------------------- | -------------------- | ------------------------------------- |
-| **4** | LangChain Fundamentals | Document Q&A         | Chains, Prompts, Output parsers       |
-| **5** | RAG Pipelines          | Knowledge Base Bot   | Document loading, Chunking, Retrieval |
-| **6** | HuggingFace Deep Dive  | Fine-tune Classifier | Transformers, Tokenizers, Trainer API |
+| Week  | Topic                                             | Project                   | Key Skills                              |
+| ----- | ------------------------------------------------- | ------------------------- | --------------------------------------- |
+| **4** | [Deep Learning with PyTorch](week-4/README.md)    | Neural Network Classifier | Tensors, nn.Module, Training loops, GPU |
+| **5** | [LLM APIs & Prompt Engineering](week-5/README.md) | AI Code Review Assistant  | Gemini API, Prompts, Function calling   |
+| **6** | HuggingFace Deep Dive                             | Fine-tune Classifier      | Transformers, Tokenizers, Trainer API   |
 
-### Deep Learning Phase (Weeks 7-9)
+### Advanced AI Phase (Weeks 7-9)
 
-| Week  | Topic                    | Project                     | Key Skills                          |
-| ----- | ------------------------ | --------------------------- | ----------------------------------- |
-| **7** | PyTorch Basics           | Neural Network from Scratch | Tensors, Autograd, Training loop    |
-| **8** | Attention & Transformers | Build Mini-Transformer      | Self-attention, Positional encoding |
-| **9** | Embeddings & Vector DBs  | Semantic Search Engine      | ChromaDB, Pinecone, FAISS           |
+| Week  | Topic                                  | Project                   | Key Skills                                     |
+| ----- | -------------------------------------- | ------------------------- | ---------------------------------------------- |
+| **7** | [Prompt Engineering](week-7/README.md) | Prompt Engineering System | Techniques, Patterns, Chain-of-Thought, Safety |
+| **8** | [RAG Pipelines](week-8/README.md)      | Knowledge Base Assistant  | Chunking, Embeddings, Vector DBs, Retrieval    |
+| **9** | [LangChain & Agents](week-9/README.md) | AI Assistant with Tools   | LCEL, Memory, Tools, Agents, Multi-Agent       |
 
 ### Agentic AI Phase (Weeks 10-12)
 
@@ -110,19 +110,19 @@ Use this to track your progress:
 
 - [ ] **Week 1**: Environment ready, first API deployed
 - [ ] **Week 2**: Can prepare any dataset for ML
-- [ ] **Week 3**: Comfortable with OpenAI API
+- [ ] **Week 3**: Comfortable with ML fundamentals (scikit-learn)
 
 ### LLM Engineering Phase
 
-- [ ] **Week 4**: Can build LangChain applications
-- [ ] **Week 5**: Understand and implement RAG
+- [ ] **Week 4**: Can build PyTorch neural networks
+- [ ] **Week 5**: Comfortable with LLM APIs (Gemini)
 - [ ] **Week 6**: Can use HuggingFace models
 
-### Deep Learning Phase
+### Advanced AI Phase
 
-- [ ] **Week 7**: Understand neural network math
-- [ ] **Week 8**: Know how transformers work
-- [ ] **Week 9**: Can implement semantic search
+- [ ] **Week 7**: Master prompt engineering techniques
+- [ ] **Week 8**: Can implement RAG pipelines
+- [ ] **Week 9**: Can build LangChain agents with tools
 
 ### Agentic AI Phase
 
