@@ -134,7 +134,7 @@ class TestElementWiseOperations:
         a = torch.tensor([2.0, 4.0, 6.0])
         b = torch.tensor([1.0, 2.0, 3.0])
         result = element_wise_operations(a, b)
-        
+
         assert torch.allclose(result["add"], torch.tensor([3.0, 6.0, 9.0]))
         assert torch.allclose(result["subtract"], torch.tensor([1.0, 2.0, 3.0]))
         assert torch.allclose(result["multiply"], torch.tensor([2.0, 8.0, 18.0]))
@@ -145,7 +145,7 @@ class TestComputeStatistics:
     def test_statistics(self):
         tensor = torch.tensor([1.0, 2.0, 3.0, 4.0, 5.0])
         stats = compute_statistics(tensor)
-        
+
         assert abs(stats["mean"] - 3.0) < 0.01
         assert abs(stats["sum"] - 15.0) < 0.01
         assert abs(stats["min"] - 1.0) < 0.01
@@ -157,6 +157,6 @@ class TestBroadcastingExample:
         vector = torch.tensor([1.0, 2.0, 3.0])
         matrix = torch.tensor([[1.0, 1.0, 1.0], [2.0, 2.0, 2.0]])
         result = broadcasting_example(vector, matrix)
-        
+
         expected = torch.tensor([[2.0, 3.0, 4.0], [3.0, 4.0, 5.0]])
         assert torch.allclose(result, expected)

@@ -293,7 +293,9 @@ def run_experiment(
 
     # Generate data
     X, y = generate_synthetic_data(n_samples, n_features, n_classes, seed)
-    train_loader, val_loader = prepare_data(X, y, train_ratio=0.8, batch_size=batch_size)
+    train_loader, val_loader = prepare_data(
+        X, y, train_ratio=0.8, batch_size=batch_size
+    )
 
     # Create model
     model = ImageClassifier(
@@ -310,7 +312,10 @@ def run_experiment(
 
     # Train
     history = trainer.fit(
-        train_loader, val_loader, num_epochs=num_epochs, early_stopping_patience=early_stopping_patience
+        train_loader,
+        val_loader,
+        num_epochs=num_epochs,
+        early_stopping_patience=early_stopping_patience,
     )
 
     # Evaluate

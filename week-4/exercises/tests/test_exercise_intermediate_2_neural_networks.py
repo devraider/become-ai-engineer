@@ -95,11 +95,7 @@ class TestCountParameters:
         assert count == 55
 
     def test_sequential_model(self):
-        model = nn.Sequential(
-            nn.Linear(10, 20),
-            nn.ReLU(),
-            nn.Linear(20, 5)
-        )
+        model = nn.Sequential(nn.Linear(10, 20), nn.ReLU(), nn.Linear(20, 5))
         count = count_parameters(model)
         # (10*20 + 20) + (20*5 + 5) = 220 + 105 = 325
         assert count == 325
@@ -139,13 +135,10 @@ class TestApplyWeightInit:
 
 class TestFreezeLayers:
     def test_freeze_specific_layers(self):
-        model = nn.Sequential(
-            nn.Linear(10, 20),
-            nn.Linear(20, 5)
-        )
+        model = nn.Sequential(nn.Linear(10, 20), nn.Linear(20, 5))
         # Freeze first layer
         freeze_layers(model, ["0"])
-        
+
         # Check that first layer is frozen
         for name, param in model.named_parameters():
             if name.startswith("0"):
@@ -154,14 +147,10 @@ class TestFreezeLayers:
 
 class TestForwardWithIntermediates:
     def test_intermediates(self):
-        model = nn.Sequential(
-            nn.Linear(10, 5),
-            nn.ReLU(),
-            nn.Linear(5, 2)
-        )
+        model = nn.Sequential(nn.Linear(10, 5), nn.ReLU(), nn.Linear(5, 2))
         x = torch.randn(1, 10)
         intermediates = forward_with_intermediates(model, x)
-        
+
         assert len(intermediates) >= 2
         assert intermediates[0].shape == x.shape
         assert intermediates[-1].shape == (1, 2)
@@ -174,10 +163,6 @@ class TestComputeOutputShape:
         assert shape == (5,)
 
     def test_sequential_model(self):
-        model = nn.Sequential(
-            nn.Linear(100, 50),
-            nn.ReLU(),
-            nn.Linear(50, 10)
-        )
+        model = nn.Sequential(nn.Linear(100, 50), nn.ReLU(), nn.Linear(50, 10))
         shape = compute_output_shape(model, (100,))
         assert shape == (10,)

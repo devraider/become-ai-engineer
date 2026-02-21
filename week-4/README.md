@@ -36,14 +36,15 @@ PyTorch is the most popular deep learning framework for research and increasingl
 
 **PyTorch vs scikit-learn:**
 
-| scikit-learn | PyTorch |
-|--------------|---------|
-| Traditional ML algorithms | Neural networks |
-| CPU only | GPU/TPU acceleration |
-| Fixed architectures | Custom architectures |
-| Structured data | Any data (images, text, audio) |
+| scikit-learn              | PyTorch                        |
+| ------------------------- | ------------------------------ |
+| Traditional ML algorithms | Neural networks                |
+| CPU only                  | GPU/TPU acceleration           |
+| Fixed architectures       | Custom architectures           |
+| Structured data           | Any data (images, text, audio) |
 
 **Key advantages:**
+
 - **Dynamic computation graphs** - Debug like regular Python
 - **Pythonic** - Feels natural, not like a separate DSL
 - **Research to production** - Same code works everywhere
@@ -151,18 +152,18 @@ learning_rate = 0.1
 for epoch in range(100):
     # Forward pass
     y_pred = X * w + b
-    
+
     # Loss (MSE)
     loss = ((y_pred - y) ** 2).mean()
-    
+
     # Backward pass
     loss.backward()
-    
+
     # Update weights (gradient descent)
     with torch.no_grad():
         w -= learning_rate * w.grad
         b -= learning_rate * b.grad
-    
+
     # Zero gradients for next iteration
     w.grad.zero_()
     b.grad.zero_()
@@ -185,7 +186,7 @@ class SimpleNN(nn.Module):
         self.layer1 = nn.Linear(input_size, hidden_size)
         self.relu = nn.ReLU()
         self.layer2 = nn.Linear(hidden_size, output_size)
-    
+
     def forward(self, x):
         x = self.layer1(x)
         x = self.relu(x)
@@ -244,23 +245,23 @@ optimizer = optim.Adam(model.parameters(), lr=0.001)
 # Training loop
 for epoch in range(num_epochs):
     model.train()  # Training mode
-    
+
     for batch_x, batch_y in train_loader:
         # 1. Zero gradients
         optimizer.zero_grad()
-        
+
         # 2. Forward pass
         outputs = model(batch_x)
-        
+
         # 3. Compute loss
         loss = criterion(outputs, batch_y)
-        
+
         # 4. Backward pass
         loss.backward()
-        
+
         # 5. Update weights
         optimizer.step()
-    
+
     # Validation
     model.eval()  # Evaluation mode (no dropout)
     with torch.no_grad():
@@ -270,19 +271,19 @@ for epoch in range(num_epochs):
 
 **Loss functions:**
 
-| Task | Loss Function |
-|------|---------------|
-| Binary classification | `nn.BCEWithLogitsLoss()` |
-| Multi-class classification | `nn.CrossEntropyLoss()` |
-| Regression | `nn.MSELoss()` or `nn.L1Loss()` |
+| Task                       | Loss Function                   |
+| -------------------------- | ------------------------------- |
+| Binary classification      | `nn.BCEWithLogitsLoss()`        |
+| Multi-class classification | `nn.CrossEntropyLoss()`         |
+| Regression                 | `nn.MSELoss()` or `nn.L1Loss()` |
 
 **Optimizers:**
 
-| Optimizer | When to Use |
-|-----------|-------------|
-| `SGD` | Simple baseline |
-| `Adam` | Good default, works for most cases |
-| `AdamW` | Adam with weight decay (recommended) |
+| Optimizer | When to Use                          |
+| --------- | ------------------------------------ |
+| `SGD`     | Simple baseline                      |
+| `Adam`    | Good default, works for most cases   |
+| `AdamW`   | Adam with weight decay (recommended) |
 
 ---
 
@@ -298,10 +299,10 @@ class TextDataset(Dataset):
     def __init__(self, texts, labels):
         self.texts = texts
         self.labels = labels
-    
+
     def __len__(self):
         return len(self.texts)
-    
+
     def __getitem__(self, idx):
         return self.texts[idx], self.labels[idx]
 
@@ -328,8 +329,8 @@ Move tensors and models to GPU for faster training:
 
 ```python
 # Check availability
-device = torch.device('cuda' if torch.cuda.is_available() else 
-                      'mps' if torch.backends.mps.is_available() else 
+device = torch.device('cuda' if torch.cuda.is_available() else
+                      'mps' if torch.backends.mps.is_available() else
                       'cpu')
 print(f"Using device: {device}")
 

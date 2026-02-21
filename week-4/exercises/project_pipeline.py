@@ -341,7 +341,9 @@ if __name__ == "__main__":
 
         if "history" in results:
             history = results["history"]
-            print(f"\nTraining completed in {len(history.get('train_loss', []))} epochs")
+            print(
+                f"\nTraining completed in {len(history.get('train_loss', []))} epochs"
+            )
 
         if "model_info" in results:
             info = results["model_info"]

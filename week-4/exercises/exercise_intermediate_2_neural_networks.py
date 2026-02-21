@@ -66,7 +66,9 @@ class SimpleClassifier(nn.Module):
         - Linear layer: hidden_size -> num_classes
     """
 
-    def __init__(self, input_size: int, hidden_size: int, num_classes: int, dropout: float = 0.2):
+    def __init__(
+        self, input_size: int, hidden_size: int, num_classes: int, dropout: float = 0.2
+    ):
         super().__init__()
         # TODO: Initialize layers
         pass
@@ -200,7 +202,9 @@ def forward_with_intermediates(
     pass
 
 
-def compute_output_shape(model: nn.Module, input_shape: Tuple[int, ...]) -> Tuple[int, ...]:
+def compute_output_shape(
+    model: nn.Module, input_shape: Tuple[int, ...]
+) -> Tuple[int, ...]:
     """
     Task 10: Compute the output shape of a model given input shape.
 
