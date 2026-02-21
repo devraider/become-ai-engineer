@@ -12,6 +12,9 @@ import pandas as pd
 from pathlib import Path
 
 import pytest
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
@@ -180,8 +183,6 @@ class TestCrossValidateModel:
 
     def test_returns_dict(self, iris_data):
         """Test that function returns a dictionary."""
-        from sklearn.linear_model import LogisticRegression
-
         X, y = iris_data
         model = LogisticRegression(max_iter=200)
 
@@ -191,8 +192,6 @@ class TestCrossValidateModel:
 
     def test_has_required_keys(self, iris_data):
         """Test that result has mean and std."""
-        from sklearn.linear_model import LogisticRegression
-
         X, y = iris_data
         model = LogisticRegression(max_iter=200)
 
@@ -212,9 +211,6 @@ class TestCompareModels:
 
     def test_returns_dataframe(self, iris_data):
         """Test that function returns DataFrame."""
-        from sklearn.linear_model import LogisticRegression
-        from sklearn.ensemble import RandomForestClassifier
-
         X, y = iris_data
         models = {
             "LR": LogisticRegression(max_iter=200),
@@ -227,9 +223,6 @@ class TestCompareModels:
 
     def test_has_all_models(self, iris_data):
         """Test that all models are in results."""
-        from sklearn.linear_model import LogisticRegression
-        from sklearn.ensemble import RandomForestClassifier
-
         X, y = iris_data
         models = {
             "LR": LogisticRegression(max_iter=200),
@@ -251,8 +244,6 @@ class TestGridSearchCV:
 
     def test_returns_dict(self, iris_data):
         """Test that function returns a dictionary."""
-        from sklearn.linear_model import LogisticRegression
-
         X, y = iris_data
         param_grid = {"C": [0.1, 1]}
 
@@ -264,8 +255,6 @@ class TestGridSearchCV:
 
     def test_has_required_keys(self, iris_data):
         """Test that result has required keys."""
-        from sklearn.linear_model import LogisticRegression
-
         X, y = iris_data
         param_grid = {"C": [0.1, 1]}
 
@@ -288,9 +277,6 @@ class TestEvaluateModelFull:
 
     def test_returns_dict(self, iris_data):
         """Test that function returns a dictionary."""
-        from sklearn.linear_model import LogisticRegression
-        from sklearn.model_selection import train_test_split
-
         X, y = iris_data
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
@@ -303,9 +289,6 @@ class TestEvaluateModelFull:
 
     def test_has_all_metrics(self, iris_data):
         """Test that result has all metrics."""
-        from sklearn.linear_model import LogisticRegression
-        from sklearn.model_selection import train_test_split
-
         X, y = iris_data
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 

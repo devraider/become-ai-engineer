@@ -12,6 +12,8 @@ import pandas as pd
 from pathlib import Path
 
 import pytest
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
@@ -77,9 +79,6 @@ class TestCreateFullPipeline:
 
     def test_returns_pipeline(self):
         """Test that function returns a Pipeline."""
-        from sklearn.preprocessing import StandardScaler
-        from sklearn.linear_model import LogisticRegression
-
         result = create_full_pipeline(StandardScaler(), LogisticRegression())
         assert result is not None, "Function returned None"
         assert hasattr(result, "fit")
@@ -160,8 +159,6 @@ class TestCreateStackingClassifier:
 
     def test_returns_classifier(self, sample_models):
         """Test function returns StackingClassifier."""
-        from sklearn.linear_model import LogisticRegression
-
         final = LogisticRegression(max_iter=200)
         result = create_stacking_classifier(sample_models, final)
         assert result is not None, "Function returned None"
@@ -177,8 +174,6 @@ class TestNestedCrossValidation:
 
     def test_returns_dict(self, sample_data):
         """Test function returns dictionary."""
-        from sklearn.linear_model import LogisticRegression
-
         X, y = sample_data
         param_grid = {"C": [0.1, 1]}
         result = nested_cross_validation(
@@ -189,8 +184,6 @@ class TestNestedCrossValidation:
 
     def test_has_required_keys(self, sample_data):
         """Test required keys are present."""
-        from sklearn.linear_model import LogisticRegression
-
         X, y = sample_data
         param_grid = {"C": [0.1, 1]}
         result = nested_cross_validation(
@@ -212,8 +205,6 @@ class TestCreateCalibratedClassifier:
 
     def test_returns_classifier(self):
         """Test function returns calibrated classifier."""
-        from sklearn.linear_model import LogisticRegression
-
         result = create_calibrated_classifier(LogisticRegression(max_iter=200))
         assert result is not None, "Function returned None"
 
@@ -228,8 +219,6 @@ class TestLearningCurveAnalysis:
 
     def test_returns_dict(self, sample_data):
         """Test function returns dictionary."""
-        from sklearn.linear_model import LogisticRegression
-
         X, y = sample_data
         result = learning_curve_analysis(LogisticRegression(max_iter=200), X, y, cv=3)
         assert result is not None, "Function returned None"
@@ -237,8 +226,6 @@ class TestLearningCurveAnalysis:
 
     def test_has_required_keys(self, sample_data):
         """Test required keys are present."""
-        from sklearn.linear_model import LogisticRegression
-
         X, y = sample_data
         result = learning_curve_analysis(LogisticRegression(max_iter=200), X, y, cv=3)
         if result:
@@ -257,8 +244,6 @@ class TestCreateThresholdClassifier:
 
     def test_returns_callable(self, sample_data):
         """Test function returns callable."""
-        from sklearn.linear_model import LogisticRegression
-
         X, y = sample_data
         model = LogisticRegression(max_iter=200)
         model.fit(X, y)
@@ -268,8 +253,6 @@ class TestCreateThresholdClassifier:
 
     def test_predictions_work(self, sample_data):
         """Test that threshold predictions work."""
-        from sklearn.linear_model import LogisticRegression
-
         X, y = sample_data
         model = LogisticRegression(max_iter=200)
         model.fit(X, y)

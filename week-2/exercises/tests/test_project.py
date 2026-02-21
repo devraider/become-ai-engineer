@@ -11,6 +11,7 @@ import sys
 import tempfile
 import pandas as pd
 import numpy as np
+import pytest
 from pathlib import Path
 
 # Add parent directory to path
@@ -90,8 +91,6 @@ class TestLoadData:
     def test_returns_dataframe(self):
         """Test that function returns a DataFrame."""
         if not HF_AVAILABLE:
-            import pytest
-
             pytest.skip("HuggingFace datasets not installed")
 
         df = load_data("amazon_polarity", num_samples=100)
@@ -101,8 +100,6 @@ class TestLoadData:
     def test_has_required_columns(self):
         """Test that DataFrame has text and label columns."""
         if not HF_AVAILABLE:
-            import pytest
-
             pytest.skip("HuggingFace datasets not installed")
 
         df = load_data("amazon_polarity", num_samples=100)
@@ -113,8 +110,6 @@ class TestLoadData:
     def test_respects_num_samples(self):
         """Test that num_samples parameter works."""
         if not HF_AVAILABLE:
-            import pytest
-
             pytest.skip("HuggingFace datasets not installed")
 
         df = load_data("amazon_polarity", num_samples=50)

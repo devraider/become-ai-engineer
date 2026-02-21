@@ -13,6 +13,7 @@ Note: Some tests require HuggingFace datasets library.
 
 import pandas as pd
 import numpy as np
+import pytest
 import sys
 from pathlib import Path
 
@@ -315,8 +316,6 @@ class TestLoadEmotionDataset:
     def test_loads_dataset(self):
         """Test loading the emotion dataset."""
         if not HF_AVAILABLE:
-            import pytest
-
             pytest.skip("HuggingFace datasets not installed")
 
         df = load_emotion_dataset()
@@ -326,8 +325,6 @@ class TestLoadEmotionDataset:
     def test_has_required_columns(self):
         """Test that DataFrame has required columns."""
         if not HF_AVAILABLE:
-            import pytest
-
             pytest.skip("HuggingFace datasets not installed")
 
         df = load_emotion_dataset()
@@ -337,8 +334,6 @@ class TestLoadEmotionDataset:
     def test_has_many_samples(self):
         """Test that dataset has many samples."""
         if not HF_AVAILABLE:
-            import pytest
-
             pytest.skip("HuggingFace datasets not installed")
 
         df = load_emotion_dataset()
@@ -347,8 +342,6 @@ class TestLoadEmotionDataset:
     def test_has_6_classes(self):
         """Test that emotion dataset has 6 emotion classes."""
         if not HF_AVAILABLE:
-            import pytest
-
             pytest.skip("HuggingFace datasets not installed")
 
         df = load_emotion_dataset()

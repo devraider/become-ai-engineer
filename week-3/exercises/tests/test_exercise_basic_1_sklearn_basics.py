@@ -14,6 +14,9 @@ import pandas as pd
 from pathlib import Path
 
 import pytest
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
@@ -162,8 +165,6 @@ class TestMakePredictions:
 
     def test_returns_predictions(self):
         """Test that function returns predictions."""
-        from sklearn.linear_model import LogisticRegression
-
         X = np.random.randn(100, 4)
         y = np.random.randint(0, 2, 100)
 
@@ -185,8 +186,6 @@ class TestGetPredictionProbabilities:
 
     def test_returns_probabilities(self):
         """Test that function returns probabilities."""
-        from sklearn.linear_model import LogisticRegression
-
         X = np.random.randn(100, 4)
         y = np.random.randint(0, 2, 100)
 
@@ -199,8 +198,6 @@ class TestGetPredictionProbabilities:
 
     def test_probabilities_sum_to_one(self):
         """Test that probabilities sum to 1."""
-        from sklearn.linear_model import LogisticRegression
-
         X = np.random.randn(100, 4)
         y = np.random.randint(0, 2, 100)
 
@@ -249,8 +246,6 @@ class TestGetFeatureImportance:
 
     def test_returns_dataframe(self):
         """Test that function returns a DataFrame."""
-        from sklearn.ensemble import RandomForestClassifier
-
         X = np.random.randn(100, 4)
         y = np.random.randint(0, 3, 100)
         feature_names = ["f1", "f2", "f3", "f4"]
@@ -264,8 +259,6 @@ class TestGetFeatureImportance:
 
     def test_has_correct_columns(self):
         """Test that DataFrame has correct columns."""
-        from sklearn.ensemble import RandomForestClassifier
-
         X = np.random.randn(100, 4)
         y = np.random.randint(0, 3, 100)
         feature_names = ["f1", "f2", "f3", "f4"]
@@ -289,17 +282,11 @@ class TestCreatePipeline:
 
     def test_returns_pipeline(self):
         """Test that function returns a Pipeline."""
-        from sklearn.preprocessing import StandardScaler
-        from sklearn.linear_model import LogisticRegression
-
         pipe = create_pipeline(StandardScaler(), LogisticRegression())
         assert pipe is not None, "Should return a pipeline"
 
     def test_pipeline_has_steps(self):
         """Test that pipeline has steps."""
-        from sklearn.preprocessing import StandardScaler
-        from sklearn.linear_model import LogisticRegression
-
         pipe = create_pipeline(StandardScaler(), LogisticRegression())
         if pipe is not None:
             assert len(pipe.steps) == 2, "Should have 2 steps"
@@ -315,8 +302,6 @@ class TestSaveLoadModel:
 
     def test_save_and_load(self):
         """Test that model can be saved and loaded."""
-        from sklearn.linear_model import LogisticRegression
-
         X = np.random.randn(100, 4)
         y = np.random.randint(0, 2, 100)
 
