@@ -31,22 +31,22 @@ Be specific and provide actionable insights."""
 def few_shot_prompt(examples: List[Dict[str, str]], new_input: str) -> str:
     """Create a few-shot prompt with examples."""
     prompt_parts = ["Learn the pattern from these examples:\n"]
-    
+
     for example in examples:
         prompt_parts.append(f"Input: {example['input']}")
         prompt_parts.append(f"Output: {example['output']}")
         prompt_parts.append("")
-    
+
     prompt_parts.append(f"Input: {new_input}")
     prompt_parts.append("Output:")
-    
+
     return "\n".join(prompt_parts)
 
 
 def structured_output_prompt(data: str, fields: List[str]) -> str:
     """Create a prompt requesting structured JSON output."""
     fields_list = "\n".join(f"- {field}" for field in fields)
-    
+
     return f"""Analyze the following text and extract information into JSON format.
 
 Text to analyze:
@@ -76,7 +76,7 @@ Let's work through this systematically:"""
 def constrained_prompt(task: str, constraints: Dict[str, str]) -> str:
     """Create a prompt with specific constraints."""
     constraints_text = "\n".join(f"- {k}: {v}" for k, v in constraints.items())
-    
+
     return f"""Task: {task}
 
 Please follow these constraints:
@@ -92,7 +92,7 @@ def code_generation_prompt(
 ) -> str:
     """Create a prompt for code generation."""
     reqs_text = "\n".join(f"- {req}" for req in requirements)
-    
+
     return f"""Write {language} code to accomplish the following task.
 
 Task: {task_description}
@@ -110,7 +110,7 @@ def comparison_prompt(items: List[str], criteria: List[str]) -> str:
     """Create a prompt for comparing multiple items."""
     items_text = ", ".join(items)
     criteria_text = ", ".join(criteria)
-    
+
     return f"""Compare the following items: {items_text}
 
 Use these criteria for comparison: {criteria_text}

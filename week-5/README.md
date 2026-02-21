@@ -65,6 +65,7 @@ print(response.text)
 ```
 
 **Why Use APIs Instead of Local Models?**
+
 - 🚀 State-of-the-art models without GPU requirements
 - 📈 Auto-scaling - handles any traffic load
 - 🔄 Always up-to-date models
@@ -89,6 +90,7 @@ print(f"Long text tokens: {token_count.total_tokens}")
 ```
 
 **Gemini Free Tier Limits (as of 2024):**
+
 - 15 requests per minute
 - 1 million tokens per day
 - 1,500 requests per day
@@ -123,6 +125,7 @@ print(response.text)
 ```
 
 **Key Prompt Engineering Techniques:**
+
 - **Role Setting**: "You are a [expert role]..."
 - **Task Specification**: Clear, specific instructions
 - **Format Control**: Specify output structure
@@ -141,7 +144,7 @@ model = genai.GenerativeModel(
     model_name="gemini-1.5-flash",
     system_instruction="""
     You are a helpful coding assistant specialized in Python.
-    
+
     Guidelines:
     - Always provide working code examples
     - Explain your code with comments
@@ -189,13 +192,13 @@ for message in chat.history:
 
 Get predictable, parseable responses:
 
-```python
+````python
 import json
 
 prompt = """
 Analyze this product review and return a JSON object.
 
-Review: "This laptop is amazing! Fast processor, great battery life, 
+Review: "This laptop is amazing! Fast processor, great battery life,
 but the keyboard is a bit mushy. Worth every penny of the $999 price."
 
 Return ONLY valid JSON with this structure:
@@ -219,13 +222,13 @@ try:
         text = text.split("```")[1]
         if text.startswith("json"):
             text = text[4:]
-    
+
     result = json.loads(text)
     print("Sentiment:", result["sentiment"])
     print("Pros:", result["pros"])
 except json.JSONDecodeError:
     print("Failed to parse JSON:", response.text)
-```
+````
 
 ### 7. Advanced: Function Calling
 
@@ -258,7 +261,7 @@ for part in response.parts:
     if fn := part.function_call:
         print(f"Function called: {fn.name}")
         print(f"Arguments: {fn.args}")
-        
+
         # Execute the function
         if fn.name == "get_weather":
             result = get_weather(**fn.args)
@@ -281,33 +284,33 @@ import time
 def robust_generate(prompt: str, max_retries: int = 3) -> str:
     """Generate content with retry logic and error handling."""
     model = genai.GenerativeModel("gemini-1.5-flash")
-    
+
     for attempt in range(max_retries):
         try:
             response = model.generate_content(prompt)
-            
+
             # Check for blocked content
             if response.prompt_feedback.block_reason:
                 raise ValueError(f"Prompt blocked: {response.prompt_feedback}")
-            
+
             return response.text
-            
+
         except google_exceptions.ResourceExhausted:
             # Rate limited - wait and retry
             wait_time = 2 ** attempt  # Exponential backoff
             print(f"Rate limited. Waiting {wait_time}s...")
             time.sleep(wait_time)
-            
+
         except google_exceptions.InvalidArgument as e:
             # Bad request - don't retry
             raise ValueError(f"Invalid request: {e}")
-            
+
         except Exception as e:
             if attempt == max_retries - 1:
                 raise
             print(f"Error: {e}. Retrying...")
             time.sleep(1)
-    
+
     raise RuntimeError("Max retries exceeded")
 
 # Usage
@@ -321,6 +324,7 @@ except RuntimeError as e:
 ```
 
 **Best Practices Checklist:**
+
 - ✅ Never hardcode API keys
 - ✅ Implement retry logic with exponential backoff
 - ✅ Handle rate limits gracefully
@@ -374,7 +378,7 @@ Build a code review tool that analyzes code and provides feedback:
 2. **Review Categories**
    - Code style and formatting
    - Potential bugs
-   - Security vulnerabilities  
+   - Security vulnerabilities
    - Performance suggestions
    - Best practice recommendations
 
@@ -405,7 +409,7 @@ print(review)
 #   "issues": [
 #     {
 #       "severity": "error",
-#       "category": "security", 
+#       "category": "security",
 #       "line": 2,
 #       "message": "SQL injection vulnerability",
 #       "suggestion": "Use parameterized queries"
@@ -423,16 +427,19 @@ response = reviewer.explain("How do I fix the SQL injection?")
 ## Interview Questions
 
 ### Basic Level
+
 1. **What is a token in the context of LLMs? Why does token count matter?**
 2. **Explain the difference between zero-shot and few-shot prompting.**
 3. **What is prompt injection and how do you prevent it?**
 
 ### Intermediate Level
+
 4. **How would you implement conversation memory in a chatbot with limited context window?**
 5. **Describe strategies for getting consistent structured (JSON) outputs from LLMs.**
 6. **What is temperature in LLM APIs? When would you use high vs low temperature?**
 
 ### Advanced Level
+
 7. **Design a system that uses function calling to let an LLM interact with external APIs. What are the security considerations?**
 8. **How would you implement RAG (Retrieval Augmented Generation) to give an LLM access to private documents?**
 9. **Compare different strategies for reducing LLM API costs while maintaining quality.**

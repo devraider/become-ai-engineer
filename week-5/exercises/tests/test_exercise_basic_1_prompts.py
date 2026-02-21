@@ -30,7 +30,10 @@ class TestBasicPrompt:
     def test_has_constraints(self):
         result = basic_prompt("APIs")
         # Should mention word limit or be beginner-friendly
-        assert any(word in result.lower() for word in ["word", "beginner", "simple", "explain", "example"])
+        assert any(
+            word in result.lower()
+            for word in ["word", "beginner", "simple", "explain", "example"]
+        )
 
 
 class TestRoleBasedPrompt:
@@ -54,7 +57,7 @@ class TestFewShotPrompt:
             {"input": "sad", "output": "NEGATIVE"},
         ]
         result = few_shot_prompt(examples, "excited")
-        
+
         assert "happy" in result
         assert "POSITIVE" in result
         assert "sad" in result
@@ -92,7 +95,10 @@ class TestChainOfThoughtPrompt:
     def test_encourages_reasoning(self):
         result = chain_of_thought_prompt("What is 2+2?")
         # Should mention step-by-step or reasoning
-        assert any(phrase in result.lower() for phrase in ["step", "think", "reason", "explain"])
+        assert any(
+            phrase in result.lower()
+            for phrase in ["step", "think", "reason", "explain"]
+        )
 
     def test_includes_problem(self):
         problem = "Calculate the area of a circle"

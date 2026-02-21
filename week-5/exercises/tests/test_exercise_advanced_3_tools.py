@@ -37,7 +37,7 @@ class TestToolDefinition:
             required_params=["location"],
             function=get_weather,
         )
-        
+
         result = tool.to_gemini_format()
         if result:  # If implemented
             assert "name" in result or "function_declarations" in str(result)
@@ -50,7 +50,7 @@ class TestToolDefinition:
             required_params=["query"],
             function=lambda q: [q],
         )
-        
+
         result = tool.to_openai_format()
         if result:  # If implemented
             assert "name" in result or "function" in result
@@ -66,7 +66,7 @@ class TestToolRegistry:
             required_params=["x"],
             function=lambda x: x,
         )
-        
+
         assert "test" in registry.list_tools()
 
     def test_get_tool(self):
@@ -78,7 +78,7 @@ class TestToolRegistry:
             required_params=[],
             function=lambda: "result",
         )
-        
+
         tool = registry.get_tool("my_tool")
         assert tool is not None
         assert tool.name == "my_tool"
@@ -87,7 +87,7 @@ class TestToolRegistry:
         registry = ToolRegistry()
         registry.register("tool1", "Desc1", {}, [], lambda: 1)
         registry.register("tool2", "Desc2", {}, [], lambda: 2)
-        
+
         tools = registry.list_tools()
         assert len(tools) == 2
         assert "tool1" in tools
@@ -95,8 +95,14 @@ class TestToolRegistry:
 
     def test_get_all_definitions(self):
         registry = ToolRegistry()
-        registry.register("tool1", "Desc1", {"p": {"type": "string", "description": "p"}}, [], lambda: 1)
-        
+        registry.register(
+            "tool1",
+            "Desc1",
+            {"p": {"type": "string", "description": "p"}},
+            [],
+            lambda: 1,
+        )
+
         definitions = registry.get_all_definitions("gemini")
         assert isinstance(definitions, list)
 
@@ -111,16 +117,18 @@ class TestExecuteToolCall:
             required_params=["location"],
             function=get_weather,
         )
-        
+
         result = execute_tool_call(registry, "get_weather", {"location": "London"})
-        
+
         if result:  # If implemented
-            assert "success" in result or "result" in result or "location" in str(result)
+            assert (
+                "success" in result or "result" in result or "location" in str(result)
+            )
 
     def test_tool_not_found(self):
         registry = ToolRegistry()
         result = execute_tool_call(registry, "nonexistent", {})
-        
+
         if result:  # If implemented
             assert "error" in result or result.get("success") == False
 
@@ -133,9 +141,9 @@ class TestExecuteToolCall:
             required_params=["expression"],
             function=calculate_math,
         )
-        
+
         result = execute_tool_call(registry, "calculate", {"expression": "2 + 2"})
-        
+
         if result and "result" in result:
             assert result["result"].get("result") == 4 or result.get("result") == 4
 
@@ -144,7 +152,7 @@ class TestParseFunctionCall:
     def test_parse_tagged_call(self):
         text = 'Some text <function_call>{"name": "test", "arguments": {"x": 1}}</function_call>'
         result = parse_function_call(text)
-        
+
         if result:  # If implemented
             assert result["name"] == "test"
             assert result["arguments"]["x"] == 1
@@ -197,13 +205,15 @@ class TestValidateToolArguments:
         tool = ToolDefinition(
             name="test",
             description="Test",
-            parameters={"required_param": {"type": "string", "description": "Required"}},
+            parameters={
+                "required_param": {"type": "string", "description": "Required"}
+            },
             required_params=["required_param"],
             function=lambda x: x,
         )
-        
+
         is_valid, error = validate_tool_arguments(tool, {"required_param": "value"})
-        
+
         if is_valid is not None:  # If implemented
             assert is_valid == True
 
@@ -211,13 +221,15 @@ class TestValidateToolArguments:
         tool = ToolDefinition(
             name="test",
             description="Test",
-            parameters={"required_param": {"type": "string", "description": "Required"}},
+            parameters={
+                "required_param": {"type": "string", "description": "Required"}
+            },
             required_params=["required_param"],
             function=lambda x: x,
         )
-        
+
         is_valid, error = validate_tool_arguments(tool, {})
-        
+
         if is_valid is not None:  # If implemented
             assert is_valid == False
             assert error is not None
@@ -229,7 +241,7 @@ class TestCreateToolPrompt:
             ToolDefinition("tool1", "Description 1", {}, [], lambda: 1),
         ]
         prompt = create_tool_prompt("What is the weather?", tools)
-        
+
         if prompt:  # If implemented
             assert "weather" in prompt.lower()
 
@@ -238,6 +250,6 @@ class TestCreateToolPrompt:
             ToolDefinition("get_weather", "Get weather data", {}, [], lambda: 1),
         ]
         prompt = create_tool_prompt("Test question", tools)
-        
+
         if prompt:  # If implemented
             assert "get_weather" in prompt or "weather" in prompt.lower()

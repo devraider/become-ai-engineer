@@ -42,7 +42,7 @@ class TestConversationHistory:
         history = ConversationHistory()
         history.add_message("user", "First")
         history.add_message("assistant", "Second")
-        
+
         messages = history.get_messages()
         assert len(messages) == 2
         assert messages[0].content == "First"
@@ -51,7 +51,7 @@ class TestConversationHistory:
         history = ConversationHistory()
         for i in range(10):
             history.add_message("user", f"Message {i}")
-        
+
         messages = history.get_messages(n=3)
         assert len(messages) == 3
 
@@ -59,7 +59,7 @@ class TestConversationHistory:
         history = ConversationHistory(max_messages=5)
         for i in range(10):
             history.add_message("user", f"Message {i}")
-        
+
         messages = history.get_messages()
         assert len(messages) <= 5
 
@@ -73,14 +73,14 @@ class TestConversationHistory:
         history = ConversationHistory()
         history.add_message("user", "Short")
         history.add_message("assistant", "Also short")
-        
+
         context = history.get_context_window(max_tokens=100)
         assert len(context) >= 1
 
     def test_to_list(self):
         history = ConversationHistory()
         history.add_message("user", "Test")
-        
+
         result = history.to_list()
         assert isinstance(result, list)
         assert len(result) == 1
@@ -108,7 +108,7 @@ class TestChatBot:
         bot = ChatBot()
         bot.chat("First message")
         bot.chat("Second message")
-        
+
         history = bot.get_history()
         assert len(history) >= 2
 
@@ -116,7 +116,7 @@ class TestChatBot:
         bot = ChatBot()
         bot.chat("Hello")
         bot.reset_conversation()
-        
+
         history = bot.get_history()
         assert len(history) == 0
 
@@ -126,7 +126,7 @@ class TestSummarizeConversation:
         history = ConversationHistory()
         history.add_message("user", "What is Python?")
         history.add_message("assistant", "Python is a programming language.")
-        
+
         result = summarize_conversation(history)
         assert isinstance(result, str)
 
@@ -135,7 +135,7 @@ class TestFormatForApi:
     def test_gemini_format(self):
         history = ConversationHistory()
         history.add_message("user", "Hello")
-        
+
         result = format_for_api(history, "gemini")
         assert isinstance(result, list)
         if result:  # If implemented
@@ -144,7 +144,7 @@ class TestFormatForApi:
     def test_openai_format(self):
         history = ConversationHistory()
         history.add_message("user", "Hello")
-        
+
         result = format_for_api(history, "openai")
         assert isinstance(result, list)
         if result:  # If implemented
@@ -158,9 +158,9 @@ class TestCreateConversationFork:
         history.add_message("assistant", "Response 0")
         history.add_message("user", "Message 1")
         history.add_message("assistant", "Response 1")
-        
+
         forked = create_conversation_fork(history, 2)
-        
+
         if forked:  # If implemented
             messages = forked.get_messages()
             assert len(messages) <= 2
