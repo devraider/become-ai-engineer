@@ -4,6 +4,10 @@ Tests for Week 8 - Exercise Intermediate 2: Embeddings & Similarity
 
 import pytest
 import math
+from importlib.util import find_spec
+
+if find_spec("sentence_transformers"):
+    from sentence_transformers import SentenceTransformer
 
 from exercise_intermediate_2_embeddings import (
     cosine_similarity,
@@ -165,8 +169,6 @@ class TestFindMostSimilar:
 class TestEmbedDocumentsBatch:
     def test_returns_embeddings(self):
         """Should return embeddings for all documents."""
-        from sentence_transformers import SentenceTransformer
-
         model = SentenceTransformer("all-MiniLM-L6-v2")
 
         docs = ["hello world", "how are you", "goodbye"]

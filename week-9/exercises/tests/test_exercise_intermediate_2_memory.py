@@ -3,6 +3,7 @@ Tests for Week 9 - Exercise Intermediate 2: Memory Systems
 """
 
 import pytest
+import os
 from datetime import datetime
 
 from exercise_intermediate_2_memory import (
@@ -211,8 +212,6 @@ class TestPersistentMemory:
 
     def test_clear_removes_file(self, tmp_path):
         """Test that clear removes file."""
-        import os
-
         file_path = str(tmp_path / "memory.json")
 
         memory = PersistentMemory(file_path)

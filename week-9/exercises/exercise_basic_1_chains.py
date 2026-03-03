@@ -14,6 +14,7 @@ Topics covered:
 """
 
 from typing import Any, Callable
+import json
 
 
 # =============================================================================
@@ -166,8 +167,6 @@ class JsonOutputParser:
         Raises:
             ValueError: If JSON is invalid
         """
-        import json
-
         # TODO: Parse JSON, handle errors appropriately
         pass
 
@@ -460,8 +459,6 @@ class CachingRunnable:
         Returns:
             String key for cache
         """
-        import json
-
         # TODO: Convert input to string key (handle dicts, lists, etc.)
         pass
 

@@ -3,6 +3,7 @@ Tests for Week 9 - Project: AI Assistant with Tools and Memory
 """
 
 import pytest
+import json
 from datetime import datetime
 
 from project_pipeline import (
@@ -360,8 +361,6 @@ class TestConversationManager:
 
     def test_export_session(self):
         """Test exporting session as JSON."""
-        import json
-
         manager = ConversationManager()
         session_id = manager.create_session()
         manager.add_message(session_id, "user", "Test")

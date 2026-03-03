@@ -9,6 +9,8 @@ from abc import ABC, abstractmethod
 import re
 import math
 
+from solution_intermediate_2_memory import ConversationBufferMemory
+
 
 @dataclass
 class ToolResult:
@@ -306,8 +308,6 @@ class AgentWithMemory:
 
     def __init__(self, agent_executor: AgentExecutor, memory=None):
         self.executor = agent_executor
-        from solution_intermediate_2_memory import ConversationBufferMemory
-
         self.memory = memory or ConversationBufferMemory()
 
     def run(self, input_text: str) -> str:
@@ -374,8 +374,6 @@ class ResearchAgent:
         self.registry = ToolRegistry()
         for t in self.tools:
             self.registry.register(t)
-        from solution_intermediate_2_memory import ConversationBufferMemory
-
         self.memory = ConversationBufferMemory()
         self.parser = ReActPromptParser()
 

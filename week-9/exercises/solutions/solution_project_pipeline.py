@@ -8,6 +8,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from abc import ABC, abstractmethod
 import json
+import math
 import uuid
 
 
@@ -178,8 +179,6 @@ class CalculatorTool(Tool):
     ]
 
     def execute(self, expression: str) -> str:
-        import math
-
         try:
             allowed = {
                 "sqrt": math.sqrt,

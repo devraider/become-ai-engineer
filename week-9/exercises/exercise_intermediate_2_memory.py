@@ -16,6 +16,9 @@ from typing import Any
 from dataclasses import dataclass, field
 from datetime import datetime
 from abc import ABC, abstractmethod
+import json
+import os
+import re
 
 
 # =============================================================================
@@ -424,8 +427,6 @@ class EntityMemory(BaseMemory):
         Returns:
             List of potential entity names
         """
-        import re
-
         # TODO: Find capitalized words that aren't at sentence start
         # Return list of potential entities
         pass
@@ -505,17 +506,12 @@ class PersistentMemory(BaseMemory):
 
     def _load(self) -> None:
         """Load memory from disk."""
-        import json
-        import os
-
         # TODO: If file exists, read and parse JSON
         # Convert dicts back to Message objects
         pass
 
     def _save(self) -> None:
         """Save memory to disk."""
-        import json
-
         # TODO: Convert messages to dicts and save as JSON
         pass
 
@@ -540,8 +536,6 @@ class PersistentMemory(BaseMemory):
 
     def clear(self) -> None:
         """Clear memory and remove file."""
-        import os
-
         # TODO: Clear messages, delete file if exists
         pass
 

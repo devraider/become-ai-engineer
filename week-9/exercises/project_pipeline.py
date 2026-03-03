@@ -19,6 +19,8 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from abc import ABC, abstractmethod
 import json
+import math
+import uuid
 
 
 # =============================================================================
@@ -220,8 +222,6 @@ class CalculatorTool(Tool):
         Returns:
             Result or error message
         """
-        import math
-
         # TODO: Safely evaluate expression with math functions
         # Return result as string
         # Handle errors gracefully
@@ -594,8 +594,6 @@ class ConversationManager:
         Returns:
             Session ID
         """
-        import uuid
-
         # TODO: Create session with unique ID, initialize memory
         pass
 

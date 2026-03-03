@@ -17,6 +17,7 @@ from typing import Any, Callable, Optional, Union
 from dataclasses import dataclass, field
 from abc import ABC, abstractmethod
 import re
+import math
 
 
 # =============================================================================
@@ -140,8 +141,6 @@ class CalculatorTool(BaseTool):
         Returns:
             Result as string
         """
-        import math
-
         # TODO: Use eval with restricted builtins (only math functions)
         # Return result as string
         pass

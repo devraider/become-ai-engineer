@@ -9,6 +9,7 @@ from datetime import datetime
 from abc import ABC, abstractmethod
 import json
 import os
+import re
 
 
 @dataclass
@@ -176,8 +177,6 @@ class EntityMemory(BaseMemory):
     """Tracks entities mentioned in conversation."""
 
     def __init__(self, entity_extractor=None):
-        import re
-
         self.entity_extractor = entity_extractor or (
             lambda t: [
                 w
