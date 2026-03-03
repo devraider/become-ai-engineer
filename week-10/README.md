@@ -5,7 +5,7 @@
 ## References
 
 - [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
-- [LangGraph Tutorials](https://langchain-ai.github.io/langgraph/tutorials/)
+- [LangGraph Tutorials](https://www.youtube.com/watch?v=jGg_1h0qzaM)
 - [LangGraph Conceptual Guide](https://langchain-ai.github.io/langgraph/concepts/)
 - [LangGraph Examples Repository](https://github.com/langchain-ai/langgraph/tree/main/examples)
 - [LangGraph Cloud](https://langchain-ai.github.io/langgraph/cloud/)
