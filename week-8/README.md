@@ -14,17 +14,17 @@
 
 ```bash
 # Core dependencies
-pip install chromadb sentence-transformers
-pip install tiktoken langchain langchain-community
+uv add chromadb sentence-transformers
+uv add tiktoken langchain langchain-community
 
 # LLM providers
-pip install google-generativeai openai
+uv add google-generativeai openai
 
 # Document processing
-pip install pypdf python-docx beautifulsoup4
+uv add pypdf python-docx beautifulsoup4
 
 # Optional: Pinecone for production
-pip install pinecone-client
+uv add pinecone-client
 ```
 
 ## Why RAG?

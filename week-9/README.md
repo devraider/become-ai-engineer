@@ -14,18 +14,18 @@
 
 ```bash
 # Core LangChain
-pip install langchain langchain-core langchain-community
+uv add langchain langchain-core langchain-community
 
 # LLM Providers
-pip install langchain-google-genai  # For Gemini
-pip install langchain-openai        # For OpenAI
+uv add langchain-google-genai  # For Gemini
+uv add langchain-openai        # For OpenAI
 
 # Vector stores and tools
-pip install chromadb faiss-cpu
-pip install wikipedia duckduckgo-search
+uv add chromadb faiss-cpu
+uv add wikipedia duckduckgo-search
 
 # Optional: LangSmith for tracing
-pip install langsmith
+uv add langsmith
 ```
 
 ## Why LangChain?
